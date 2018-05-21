@@ -8,7 +8,7 @@ const postStatus = (status) => () => {
   const { rest } = twitter(tokens);
 
   return rest.post('statuses/update', { status });
-}
+};
 
 export function* postTweet(action) {
   const { tweet } = action;
@@ -17,7 +17,7 @@ export function* postTweet(action) {
   if (response.created_at) {
     yield put(TweetsActions.successfullyPosted());
   }
-}
+};
 
 export default function* root() {
   yield all([

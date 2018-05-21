@@ -28,8 +28,6 @@ export default (rootReducer, rootSaga) => {
    */
   middleware.push(consumeActionMiddleware());
 
-  /* ------------- Redux Offline Enchancer ------------- */
-
   const store = createStore(rootReducer, applyMiddleware(...middleware));
 
   // kick off root saga

@@ -6,17 +6,16 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  FlatList,
 } from 'react-native';
 import { size } from 'lodash';
-import { shape, number, string, func } from 'prop-types'
+import { shape, number, string, func, objectOf } from 'prop-types';
 
 import TweetsActions from './TweetRedux';
 
 const propTypes = {
   tweetsNotYetLive: number.isRequired,
   postTweet: func.isRequired,
-  tweets: shape({ id: number, tweet: string }),
+  tweets: objectOf(shape({ id: number, tweet: string })),
 };
 
 const defaultProps = {

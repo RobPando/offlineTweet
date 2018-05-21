@@ -28,7 +28,7 @@ export function* startWatchingNetworkConnectivity() {
   } finally {
     channel.close();
   }
-}
+};
 
 export default function* root() {
   yield all([

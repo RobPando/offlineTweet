@@ -1,8 +1,8 @@
 const tokens = {
-  consumerKey: 'yqrIw15KU8MzADt8jStYx4XeK',
-  consumerSecret: 'uV48ABHOWJzXixR83FNFPAqfUJZ5JFN29y4OTK40hM3FbMGGrM',
-  accessToken: '59537199-H9rOke8ByzoCZuLDOTDfCZlqKbzPSP7jyDAItozFn',
-  accessTokenSecret: 's51B7jkqrfPOWntJxZHlDsCsb9mHRRRFT5WLkYIAQzAoD',
+  consumerKey: 'CONSUMER_KEY_HERE',
+  consumerSecret: 'CONSUMER_SECRET_HERE',
+  accessToken: 'ACCESS_TOKEN_HERE',
+  accessTokenSecret: 'ACCESS_TOKEN_SECRET_HERE',
 };
 
 export default tokens;

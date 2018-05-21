@@ -31,7 +31,6 @@ export const postTweet = (state, { id, tweet }) =>
     pendingTweetPosts: state.pendingTweetPosts + 1,
   });
 
-
 export const successfullyPosted = (state) =>
     state.merge({ pendingTweetPosts: state.pendingTweetPosts - 1 });
 

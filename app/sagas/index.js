@@ -2,7 +2,6 @@ import { fork, all } from 'redux-saga/effects';
 
 /* ------------- Sagas ------------- */
 
-// import StartupRootSagas from './StartupSagas'
 import AppStateRootSagas from './AppStateSagas';
 import TweetSagas from '../features/tweet/TweetSagas';
 
