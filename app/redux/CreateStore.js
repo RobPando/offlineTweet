@@ -1,24 +1,25 @@
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import {
   offlineMiddleware,
   suspendSaga,
   consumeActionMiddleware,
-} from 'redux-offline-queue';
+} from 'redux-offline-queue'
 
 // creates the store
 export default (rootReducer, rootSaga) => {
   /* ------------- Redux Configuration ------------- */
 
-  const middleware = [];
+  const middleware = []
+  const enhancers = []
 
-  middleware.push(offlineMiddleware());
+  middleware.push(offlineMiddleware({ stateName: 'offlineRedux' }))
 
   /* ------------- Saga Middleware ------------- */
 
-  const sagaMiddleware = createSagaMiddleware();
-  const suspendSagaMiddleware = suspendSaga(sagaMiddleware);
-  middleware.push(suspendSagaMiddleware);
+  const sagaMiddleware = createSagaMiddleware()
+  const suspendSagaMiddleware = suspendSaga(sagaMiddleware)
+  middleware.push(suspendSagaMiddleware)
 
   /* ------------- Assemble Middleware ------------- */
 
@@ -26,12 +27,18 @@ export default (rootReducer, rootSaga) => {
    * We allow the previous middlewares (especially the saga middleware) to react to the action
    * before it is eventually consumed.
    */
-  middleware.push(consumeActionMiddleware());
+  middleware.push(consumeActionMiddleware())
+  enhancers.push(applyMiddleware(...middleware))
 
-  const store = createStore(rootReducer, applyMiddleware(...middleware));
+  const composeEnhancers =
+    global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && __DEV__
+      ? global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+      : compose
+
+  const store = createStore(rootReducer, composeEnhancers(...enhancers))
 
   // kick off root saga
-  sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga)
 
-  return store;
-};
+  return store
+}
