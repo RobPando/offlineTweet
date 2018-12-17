@@ -56,3 +56,4 @@ buck-out/
 *.jsbundle
 
 app/config/tokens.js
+ios/index/
